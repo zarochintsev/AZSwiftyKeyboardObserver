@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FAFF6C6F20334E49009D8FC3 /* AZSwiftyKeyboardObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = FAFF6C6D20334E49009D8FC3 /* AZSwiftyKeyboardObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FAFF6C81203352A6009D8FC3 /* AZSwiftyKeyboardObserverImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF6C7D203352A6009D8FC3 /* AZSwiftyKeyboardObserverImpl.swift */; };
+		FAFF6C82203352A6009D8FC3 /* AZSwiftyKeyboardObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = FAFF6C7E203352A6009D8FC3 /* AZSwiftyKeyboardObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FAFF6C84203352A6009D8FC3 /* AZSwiftyKeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF6C80203352A6009D8FC3 /* AZSwiftyKeyboardObserver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FAFF6C6A20334E49009D8FC3 /* AZSwiftyKeyboardObserver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AZSwiftyKeyboardObserver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FAFF6C6D20334E49009D8FC3 /* AZSwiftyKeyboardObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AZSwiftyKeyboardObserver.h; sourceTree = "<group>"; };
-		FAFF6C6E20334E49009D8FC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAFF6C7D203352A6009D8FC3 /* AZSwiftyKeyboardObserverImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AZSwiftyKeyboardObserverImpl.swift; sourceTree = "<group>"; };
+		FAFF6C7E203352A6009D8FC3 /* AZSwiftyKeyboardObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZSwiftyKeyboardObserver.h; sourceTree = "<group>"; };
+		FAFF6C7F203352A6009D8FC3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAFF6C80203352A6009D8FC3 /* AZSwiftyKeyboardObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AZSwiftyKeyboardObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,10 +50,28 @@
 		FAFF6C6C20334E49009D8FC3 /* AZSwiftyKeyboardObserver */ = {
 			isa = PBXGroup;
 			children = (
-				FAFF6C6D20334E49009D8FC3 /* AZSwiftyKeyboardObserver.h */,
-				FAFF6C6E20334E49009D8FC3 /* Info.plist */,
+				FAFF6C7C203352A6009D8FC3 /* Source */,
 			);
 			path = AZSwiftyKeyboardObserver;
+			sourceTree = "<group>";
+		};
+		FAFF6C7C203352A6009D8FC3 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				FAFF6C80203352A6009D8FC3 /* AZSwiftyKeyboardObserver.swift */,
+				FAFF6C7D203352A6009D8FC3 /* AZSwiftyKeyboardObserverImpl.swift */,
+				FAFF6C85203352BE009D8FC3 /* Supporting Files */,
+			);
+			path = Source;
+			sourceTree = SOURCE_ROOT;
+		};
+		FAFF6C85203352BE009D8FC3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FAFF6C7E203352A6009D8FC3 /* AZSwiftyKeyboardObserver.h */,
+				FAFF6C7F203352A6009D8FC3 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,7 +81,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAFF6C6F20334E49009D8FC3 /* AZSwiftyKeyboardObserver.h in Headers */,
+				FAFF6C82203352A6009D8FC3 /* AZSwiftyKeyboardObserver.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +117,7 @@
 				TargetAttributes = {
 					FAFF6C6920334E49009D8FC3 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -131,6 +154,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAFF6C81203352A6009D8FC3 /* AZSwiftyKeyboardObserverImpl.swift in Sources */,
+				FAFF6C84203352A6009D8FC3 /* AZSwiftyKeyboardObserver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +278,7 @@
 		FAFF6C7320334E49009D8FC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -260,12 +286,13 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = AZSwiftyKeyboardObserver/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zarochintsev.AZSwiftyKeyboardObserver;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -274,6 +301,7 @@
 		FAFF6C7420334E49009D8FC3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -281,7 +309,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = AZSwiftyKeyboardObserver/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zarochintsev.AZSwiftyKeyboardObserver;

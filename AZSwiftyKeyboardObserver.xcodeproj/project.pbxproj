@@ -34,7 +34,7 @@
 		FAFF6C6020334E48009D8FC3 = {
 			isa = PBXGroup;
 			children = (
-				FAFF6C6C20334E49009D8FC3 /* AZSwiftyKeyboardObserver */,
+				FAFF6C7C203352A6009D8FC3 /* Source */,
 				FAFF6C6B20334E49009D8FC3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -45,14 +45,6 @@
 				FAFF6C6A20334E49009D8FC3 /* AZSwiftyKeyboardObserver.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		FAFF6C6C20334E49009D8FC3 /* AZSwiftyKeyboardObserver */ = {
-			isa = PBXGroup;
-			children = (
-				FAFF6C7C203352A6009D8FC3 /* Source */,
-			);
-			path = AZSwiftyKeyboardObserver;
 			sourceTree = "<group>";
 		};
 		FAFF6C7C203352A6009D8FC3 /* Source */ = {

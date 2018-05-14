@@ -27,7 +27,7 @@
 
 import UIKit
 
-public enum AZKeyboardEvent {
+public enum AZSwiftyKeyboardObserverEvent {
   case willShow
   case didShow
   case willHide
@@ -36,15 +36,15 @@ public enum AZKeyboardEvent {
   case didChangeFrame
 }
 
-public protocol AZKeyboardObserver: class {
-  typealias KeyboardEventHandler = (AZKeyboardObserver, AZKeyboardEvent) -> Void
+public protocol AZSwiftyKeyboardObserver: class {
+  typealias KeyboardEventHandler = (AZSwiftyKeyboardObserver, AZSwiftyKeyboardObserverEvent) -> Void
   
   var beginFrame: CGRect { get }
   var endFrame: CGRect { get }
   var animationDuration: TimeInterval { get }
   var animationOptions: UIViewAnimationOptions { get }
   
-  var observe: AZKeyboardObserver.KeyboardEventHandler? { get set }
+  var observe: AZSwiftyKeyboardObserver.KeyboardEventHandler? { get set }
   
   func registerObservers()
   func removedObservers()

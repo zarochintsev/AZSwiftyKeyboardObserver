@@ -4,7 +4,7 @@
 //
 // MIT License
 //
-// Copyright (c) 2018 Alex Zarochintsev
+// Copyright (c) 2018-2019 Alex Zarochintsev
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,15 +27,6 @@
 
 import UIKit
 
-public enum AZSwiftyKeyboardObserverEvent {
-  case willShow
-  case didShow
-  case willHide
-  case didHide
-  case willChangeFrame
-  case didChangeFrame
-}
-
 public protocol AZSwiftyKeyboardObserver: class {
   typealias KeyboardEventHandler = (AZSwiftyKeyboardObserver, AZSwiftyKeyboardObserverEvent) -> Void
   
@@ -43,7 +34,6 @@ public protocol AZSwiftyKeyboardObserver: class {
   var endFrame: CGRect { get }
   var animationDuration: TimeInterval { get }
   var animationOptions: UIViewAnimationOptions { get }
-  
   var observe: AZSwiftyKeyboardObserver.KeyboardEventHandler? { get set }
   
   func registerObservers()

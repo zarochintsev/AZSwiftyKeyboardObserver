@@ -4,7 +4,7 @@
 //
 // MIT License
 //
-// Copyright (c) 2018 Alex Zarochintsev
+// Copyright (c) 2018-2019 Alex Zarochintsev
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -28,16 +28,14 @@
 import UIKit
 
 public class AZSwiftyKeyboardObserverImpl {
-  private var _beginFrame: CGRect = .zero
-  private var _endFrame: CGRect = .zero
-  private var _animationDuration: TimeInterval = 0.0
-  private var _animationOptions: UIViewAnimationOptions = []
-  
-  private var _observe: AZSwiftyKeyboardObserver.KeyboardEventHandler?
+  public var beginFrame: CGRect = .zero
+  public var endFrame: CGRect = .zero
+  public var animationDuration: TimeInterval = 0.0
+  public var animationOptions: UIViewAnimationOptions = []
+  public var observe: AZSwiftyKeyboardObserver.KeyboardEventHandler?
   
   // MARK: - Lifecycle
-  public init() {
-  }
+  public init() {}
   
   deinit {
     removedObservers()
@@ -46,79 +44,37 @@ public class AZSwiftyKeyboardObserverImpl {
   // MARK: - Actions
   @objc private func keyboardWillShow(notification: Notification) {
     updateProperties(with: notification)
-    _observe?(self, .willShow)
+    observe?(self, .willShow)
   }
   
   @objc private func keyboardDidShow(notification: Notification) {
     updateProperties(with: notification)
-    _observe?(self, .didShow)
+    observe?(self, .didShow)
   }
   
   @objc private func keyboardWillHide(notification: Notification) {
     updateProperties(with: notification)
-    _observe?(self, .willHide)
+    observe?(self, .willHide)
   }
   
   @objc private func keyboardDidHide(notification: Notification) {
     updateProperties(with: notification)
-    _observe?(self, .didHide)
+    observe?(self, .didHide)
   }
   
   @objc private func keyboardWillChangeFrame(notification: Notification) {
     updateProperties(with: notification)
-    _observe?(self, .willChangeFrame)
+    observe?(self, .willChangeFrame)
   }
   
   @objc private func keyboardDidChangeFrame(notification: Notification) {
     updateProperties(with: notification)
-    _observe?(self, .didChangeFrame)
-  }
-  
-  // MARK: - Helpers
-  private func updateProperties(with notification: Notification) {
-    guard
-      let userInfo = notification.userInfo,
-      let beginFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
-      let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-      let curveRawValue = (userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber)?.intValue,
-      let animationCurve = UIViewAnimationCurve(rawValue: curveRawValue),
-      let animationDuration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue
-    else { return }
-    
-    _beginFrame = beginFrame
-    _endFrame = endFrame
-    _animationDuration = animationDuration
-    _animationOptions = UIViewAnimationOptions(rawValue: UInt(animationCurve.rawValue << 16))
+    observe?(self, .didChangeFrame)
   }
 }
 
 // MARK: AZSwiftyKeyboardObserver
 extension AZSwiftyKeyboardObserverImpl: AZSwiftyKeyboardObserver {
-  public var beginFrame: CGRect {
-    return _beginFrame
-  }
-  
-  public var endFrame: CGRect {
-    return _endFrame
-  }
-  
-  public var animationDuration: TimeInterval {
-    return _animationDuration
-  }
-  
-  public var animationOptions: UIViewAnimationOptions {
-    return _animationOptions
-  }
-  
-  public var observe: AZSwiftyKeyboardObserver.KeyboardEventHandler? {
-    get {
-      return _observe
-    }
-    set {
-      _observe = newValue
-    }
-  }
-  
   public func registerObservers() {
     let notificationCenter = NotificationCenter.default
     notificationCenter.addObserver(
@@ -144,5 +100,23 @@ extension AZSwiftyKeyboardObserverImpl: AZSwiftyKeyboardObserver {
   public func removedObservers() {
     NotificationCenter.default.removeObserver(self)
   }
-  
+}
+
+// MARK: - Private Extension
+private extension AZSwiftyKeyboardObserverImpl {
+  func updateProperties(with notification: Notification) {
+    guard
+      let userInfo = notification.userInfo,
+      let beginFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
+      let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+      let curveRawValue = (userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber)?.intValue,
+      let animationCurve = UIViewAnimationCurve(rawValue: curveRawValue),
+      let animationDuration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue
+      else { return }
+    
+    self.beginFrame = beginFrame
+    self.endFrame = endFrame
+    self.animationDuration = animationDuration
+    self.animationOptions = UIViewAnimationOptions(rawValue: UInt(animationCurve.rawValue << 16))
+  }
 }

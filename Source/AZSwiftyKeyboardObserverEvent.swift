@@ -1,5 +1,5 @@
 //
-// AZSwiftyKeyboardObserver.h
+// AZSwiftyKeyboardObserverEvent.swift
 // AZSwiftyKeyboardObserver
 //
 // MIT License
@@ -25,7 +25,13 @@
 // SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+import Foundation
 
-FOUNDATION_EXPORT double AZSwiftyKeyboardObserverVersionNumber;
-FOUNDATION_EXPORT const unsigned char AZSwiftyKeyboardObserverVersionString[];
+public enum AZSwiftyKeyboardObserverEvent {
+  case willShow
+  case didShow
+  case willHide
+  case didHide
+  case willChangeFrame
+  case didChangeFrame
+}

@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FAAAC38B22141B9F0016B7E7 /* AZSwiftyKeyboardObserverEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAAC38A22141B9F0016B7E7 /* AZSwiftyKeyboardObserverEvent.swift */; };
 		FAFF6C81203352A6009D8FC3 /* AZSwiftyKeyboardObserverImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF6C7D203352A6009D8FC3 /* AZSwiftyKeyboardObserverImpl.swift */; };
 		FAFF6C82203352A6009D8FC3 /* AZSwiftyKeyboardObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = FAFF6C7E203352A6009D8FC3 /* AZSwiftyKeyboardObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FAFF6C84203352A6009D8FC3 /* AZSwiftyKeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF6C80203352A6009D8FC3 /* AZSwiftyKeyboardObserver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FAAAC38A22141B9F0016B7E7 /* AZSwiftyKeyboardObserverEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AZSwiftyKeyboardObserverEvent.swift; sourceTree = "<group>"; };
 		FAFF6C6A20334E49009D8FC3 /* AZSwiftyKeyboardObserver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AZSwiftyKeyboardObserver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAFF6C7D203352A6009D8FC3 /* AZSwiftyKeyboardObserverImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AZSwiftyKeyboardObserverImpl.swift; sourceTree = "<group>"; };
 		FAFF6C7E203352A6009D8FC3 /* AZSwiftyKeyboardObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZSwiftyKeyboardObserver.h; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 			children = (
 				FAFF6C80203352A6009D8FC3 /* AZSwiftyKeyboardObserver.swift */,
 				FAFF6C7D203352A6009D8FC3 /* AZSwiftyKeyboardObserverImpl.swift */,
+				FAAAC38A22141B9F0016B7E7 /* AZSwiftyKeyboardObserverEvent.swift */,
 				FAFF6C85203352BE009D8FC3 /* Supporting Files */,
 			);
 			path = Source;
@@ -104,7 +107,7 @@
 		FAFF6C6120334E48009D8FC3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "[Zarochintsev Production];";
 				TargetAttributes = {
 					FAFF6C6920334E49009D8FC3 = {
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAFF6C81203352A6009D8FC3 /* AZSwiftyKeyboardObserverImpl.swift in Sources */,
+				FAAAC38B22141B9F0016B7E7 /* AZSwiftyKeyboardObserverEvent.swift in Sources */,
 				FAFF6C84203352A6009D8FC3 /* AZSwiftyKeyboardObserver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -168,6 +172,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -175,6 +180,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -203,7 +209,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -228,6 +234,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -235,6 +242,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -257,7 +265,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

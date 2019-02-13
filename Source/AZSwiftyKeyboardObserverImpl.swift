@@ -27,12 +27,12 @@
 
 import UIKit
 
-public class AZSwiftyKeyboardObserverImpl {
-  public var beginFrame: CGRect = .zero
-  public var endFrame: CGRect = .zero
-  public var animationDuration: TimeInterval = 0.0
-  public var animationOptions: UIViewAnimationOptions = []
-  public var observe: AZSwiftyKeyboardObserver.KeyboardEventHandler?
+public class AZKeyboardObserverImpl {
+  private var _beginFrame: CGRect = .zero
+  private var _endFrame: CGRect = .zero
+  private var _animationDuration: TimeInterval = 0.0
+  private var _animationOptions: UIViewAnimationOptions = []
+  private var _observe: AZSwiftyKeyboardObserver.KeyboardEventHandler?
   
   // MARK: - Lifecycle
   public init() {}
@@ -44,67 +44,37 @@ public class AZSwiftyKeyboardObserverImpl {
   // MARK: - Actions
   @objc private func keyboardWillShow(notification: Notification) {
     updateProperties(with: notification)
-    observe?(self, .willShow)
+    _observe?(self, .willShow)
   }
   
   @objc private func keyboardDidShow(notification: Notification) {
     updateProperties(with: notification)
-    observe?(self, .didShow)
+    _observe?(self, .didShow)
   }
   
   @objc private func keyboardWillHide(notification: Notification) {
     updateProperties(with: notification)
-    observe?(self, .willHide)
+    _observe?(self, .willHide)
   }
   
   @objc private func keyboardDidHide(notification: Notification) {
     updateProperties(with: notification)
-    observe?(self, .didHide)
+    _observe?(self, .didHide)
   }
   
   @objc private func keyboardWillChangeFrame(notification: Notification) {
     updateProperties(with: notification)
-    observe?(self, .willChangeFrame)
+    _observe?(self, .willChangeFrame)
   }
   
   @objc private func keyboardDidChangeFrame(notification: Notification) {
     updateProperties(with: notification)
-    observe?(self, .didChangeFrame)
-  }
-}
-
-// MARK: AZSwiftyKeyboardObserver
-extension AZSwiftyKeyboardObserverImpl: AZSwiftyKeyboardObserver {
-  public func registerObservers() {
-    let notificationCenter = NotificationCenter.default
-    notificationCenter.addObserver(
-      self, selector: #selector(keyboardWillShow),
-      name: .UIKeyboardWillShow, object: nil)
-    notificationCenter.addObserver(
-      self, selector: #selector(keyboardDidShow),
-      name: .UIKeyboardDidShow, object: nil)
-    notificationCenter.addObserver(
-      self, selector: #selector(keyboardWillHide),
-      name: .UIKeyboardWillHide, object: nil)
-    notificationCenter.addObserver(
-      self, selector: #selector(keyboardDidHide),
-      name: .UIKeyboardDidHide, object: nil)
-    notificationCenter.addObserver(
-      self, selector: #selector(keyboardWillChangeFrame),
-      name: .UIKeyboardWillChangeFrame, object: nil)
-    notificationCenter.addObserver(
-      self, selector: #selector(keyboardDidChangeFrame),
-      name: .UIKeyboardDidChangeFrame, object: nil)
+    _observe?(self, .didChangeFrame)
   }
   
-  public func removedObservers() {
-    NotificationCenter.default.removeObserver(self)
-  }
-}
-
-// MARK: - Private Extension
-private extension AZSwiftyKeyboardObserverImpl {
-  func updateProperties(with notification: Notification) {
+  // MARK: Helpers
+  
+  private func updateProperties(with notification: Notification) {
     guard
       let userInfo = notification.userInfo,
       let beginFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
@@ -112,11 +82,59 @@ private extension AZSwiftyKeyboardObserverImpl {
       let curveRawValue = (userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber)?.intValue,
       let animationCurve = UIViewAnimationCurve(rawValue: curveRawValue),
       let animationDuration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue
-      else { return }
+    else { return }
     
-    self.beginFrame = beginFrame
-    self.endFrame = endFrame
-    self.animationDuration = animationDuration
-    self.animationOptions = UIViewAnimationOptions(rawValue: UInt(animationCurve.rawValue << 16))
+    _beginFrame = beginFrame
+    _endFrame = endFrame
+    _animationDuration = animationDuration
+    _animationOptions = UIViewAnimationOptions(rawValue: UInt(animationCurve.rawValue << 16))
+  }
+}
+
+// MARK: AZKeyboardObserver
+extension AZKeyboardObserverImpl: AZSwiftyKeyboardObserver {
+  public var beginFrame: CGRect {
+    return _beginFrame
+  }
+  
+  public var endFrame: CGRect {
+    return _endFrame
+  }
+  
+  public var animationDuration: TimeInterval {
+    return _animationDuration
+  }
+  
+  public var animationOptions: UIViewAnimationOptions {
+    return _animationOptions
+  }
+  
+  public var observe: AZSwiftyKeyboardObserver.KeyboardEventHandler? {
+    get {
+      return _observe
+    }
+    set {
+      _observe = newValue
+    }
+  }
+  
+  public func registerObservers() {
+    let notificationCenter = NotificationCenter.default
+    notificationCenter.addObserver(self, selector: #selector(keyboardWillShow),
+                                   name: .UIKeyboardWillShow, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(keyboardDidShow),
+                                   name: .UIKeyboardDidShow, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(keyboardWillHide),
+                                   name: .UIKeyboardWillHide, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(keyboardDidHide),
+                                   name: .UIKeyboardDidHide, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(keyboardWillChangeFrame),
+                                   name: .UIKeyboardWillChangeFrame, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(keyboardDidChangeFrame),
+                                   name: .UIKeyboardDidChangeFrame, object: nil)
+  }
+  
+  public func removedObservers() {
+    NotificationCenter.default.removeObserver(self)
   }
 }
